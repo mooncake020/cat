@@ -1,7 +1,19 @@
 package com.dianping.cat.analysis;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.Properties;
 
+import com.alibaba.fastjson.JSON;
+import com.dianping.cat.message.spi.internal.DefaultMessageTree;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import io.searchbox.client.JestClient;
+import io.searchbox.client.JestClientFactory;
+import io.searchbox.client.config.HttpClientConfig;
+import io.searchbox.core.Index;
+import io.searchbox.indices.CreateIndex;
 import org.codehaus.plexus.logging.LogEnabled;
 import org.codehaus.plexus.logging.Logger;
 import org.codehaus.plexus.personality.plexus.lifecycle.phase.Initializable;
@@ -50,6 +62,22 @@ public class RealtimeConsumer extends ContainerHolder implements MessageConsumer
 			Period period = m_periodManager.findPeriod(timestamp);
 
 			if (period != null) {
+				MessageTree messageTree =tree.copy();
+//				MessageTree messageTree = new DefaultMessageTree();
+//				messageTree.setDomain(tree.getDomain());
+//				messageTree.setHostName(tree.getHostName());
+//				messageTree.setIpAddress(tree.getIpAddress());
+//				messageTree.setMessage(tree.getMessage());
+//				messageTree.setMessageId(tree.getMessageId());
+//				messageTree.setParentMessageId(tree.getParentMessageId());
+//				messageTree.setRootMessageId(tree.getRootMessageId());
+//				messageTree.setSessionToken(tree.getSessionToken());
+//				messageTree.setThreadGroupName(tree.getThreadGroupName());
+//				messageTree.setThreadName(tree.getThreadName());
+				if (! "cat".equals(tree.getDomain()))
+				new ElasticSearchHelper().push2es(tree, messageTree);
+				//System.err.println(tree.toString());
+
 				period.distribute(tree);
 			} else {
 				m_serverStateManager.addNetworkTimeError(1);
@@ -62,6 +90,12 @@ public class RealtimeConsumer extends ContainerHolder implements MessageConsumer
 			}
 		}
 	}
+
+
+
+
+
+
 
 	public void doCheckpoint() {
 		m_logger.info("starting do checkpoint.");
@@ -134,4 +168,25 @@ public class RealtimeConsumer extends ContainerHolder implements MessageConsumer
 		Threads.forGroup("cat").start(m_periodManager);
 	}
 
+}
+
+class DefaultMessageTreeVO{
+	private String detail;
+	private MessageTree messageTree;
+
+	public String getDetail() {
+		return detail;
+	}
+
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
+
+	public MessageTree getMessageTree() {
+		return messageTree;
+	}
+
+	public void setMessageTree(MessageTree messageTree) {
+		this.messageTree = messageTree;
+	}
 }
