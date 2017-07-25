@@ -90,7 +90,7 @@ function submit(){
 	});
 	var content = JSON.stringify(domain);
 	var domainstr = $('#domain').val();
-	window.location.href = "?op=domainGroupConfigSubmit&domain="+domainstr+"&content="+content;
+	window.location.href=encodeURI( "?op=domainGroupConfigSubmit&domain="+domainstr+"&content="+content)
 }
 $(document).ready(function() {
 	$('#projects_config').addClass('active open');

@@ -54,7 +54,7 @@
 							content = content + item.value + ",";
 						}
 					}
-					window.location.href = "?op=appRuleBatchUpdate&type=batch&content="+content;
+					window.location.href=encodeURI( "?op=appRuleBatchUpdate&type=batch&content="+content)
 				}		
 			});
 			

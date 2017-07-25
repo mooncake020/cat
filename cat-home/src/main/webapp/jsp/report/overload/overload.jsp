@@ -169,7 +169,7 @@
 	      function queryNew(){
 	        var startTime=$("#startTime").val();
 	        var endTime=$("#endTime").val();
-	        window.location.href="?op=view&startTime="+startTime+"&endTime="+endTime;
+	        window.location.href=encodeURI("?op=view&startTime="+startTime+"&endTime="+endTime);
 	      }
 		</script>
 </a:offline>

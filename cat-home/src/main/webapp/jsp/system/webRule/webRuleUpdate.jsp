@@ -69,7 +69,7 @@ function update() {
     var metric = $("#metric").val();
     var split = ";";
     var id = command + split + code + split + city + split + operator + ":" + metric + ":" + name;
-    window.location.href = "?op=webRuleSubmit&configs=" + configStr + "&ruleId=" + id;
+    window.location.href=encodeURI( "?op=webRuleSubmit&configs=" + configStr + "&ruleId=" + id)
 }
 
 	$(document).ready(function() {

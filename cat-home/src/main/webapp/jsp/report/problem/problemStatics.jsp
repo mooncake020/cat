@@ -67,8 +67,8 @@
 				var longServiceTime=$("#p_longService").val();
 				var longCacheTime=$("#p_longCache").val();
 				var longCallTime=$("#p_longCall").val();
-				window.location.href="?op=view&domain="+domain+"&ip="+ip+"&date="+date+"&urlThreshold="+longUrlTime+"&sqlThreshold="+longSqlTime+"&serviceThreshold="+longServiceTime
-						+"&cacheThreshold="+longCacheTime+"&callThreshold="+longCallTime;
+				window.location.href=encodeURI("?op=view&domain="+domain+"&ip="+ip+"&date="+date+"&urlThreshold="+longUrlTime+"&sqlThreshold="+longSqlTime+"&serviceThreshold="+longServiceTime
+                    +"&cacheThreshold="+longCacheTime+"&callThreshold="+longCallTime);
 			}
 		</script>
 		</th>

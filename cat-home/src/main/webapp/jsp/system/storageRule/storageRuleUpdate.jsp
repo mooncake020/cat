@@ -84,7 +84,7 @@ function update() {
     
     var split = ";";
     var id = name + split + machine + split + method + split + target + split + andStr;
-    window.location.href = "?op=storageRuleSubmit&configs=" + configStr + "&type=${payload.type}&ruleId=" + id;
+    window.location.href=encodeURI( "?op=storageRuleSubmit&configs=" + configStr + "&type=${payload.type}&ruleId=" + id)
 }
 
 	$(document).ready(function() {

@@ -19,7 +19,7 @@
 		var level = queryField('${model.fieldsInfo.levels}','level');
 		var split = ";";
 		var query = plat + split + appVersion + split + platVersion + split + module + split + level;
-		window.location.href = "?op=${payload.action.name}&query1=" + query + "&step=${payload.step}";
+		window.location.href=encodeURI( "?op=${payload.action.name}&query1=" + query + "&step=${payload.step}");
 	}
 	
 	function clickMe(fields, prefix) {
@@ -97,7 +97,7 @@
 	
 	$("#platformType")
 	  .change(function () {
-		  window.location.href = "?op=${payload.action.name}&query1=" + this.value + ";;;;&date=${model.date}&reportType=${payload.reportType}";
+		  window.location.href=encodeURI( "?op=${payload.action.name}&query1=" + this.value + ";;;;&date=${model.date}&reportType=${payload.reportType}")
 	  })
 	  
 	$(document).ready(

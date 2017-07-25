@@ -58,8 +58,8 @@
 				var customDate = '${model.customDate}';
 				var reportType ='${payload.reportType}';
 				var project = '${payload.projectName}';
-				window.location.href="?op=historyMethod&domain="+domain+"&project="+project+"&reportType="+reportType+"&ip="+ip+"&date="
-						+date+"&queryName="+queryName+"&remote="+remote+"&serviceSort="+serviceSort+"&callSort"+callSort+customDate;
+				window.location.href=encodeURI("?op=historyMethod&domain="+domain+"&project="+project+"&reportType="+reportType+"&ip="+ip+"&date="
+                    +date+"&queryName="+queryName+"&remote="+remote+"&serviceSort="+serviceSort+"&callSort"+callSort+customDate);
 			}
 		</script>
 		<c:if test="${!empty model.methodInfo.callProjectsInfo}">

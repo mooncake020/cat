@@ -35,7 +35,7 @@
 	      
 	      function queryNew(){
 	        var time=$("#time").val();
-	        window.location.href="?op=view&date="+time;
+	        window.location.href=encodeURI("?op=view&date="+time);
 	      }
 		</script>
 </a:offline>

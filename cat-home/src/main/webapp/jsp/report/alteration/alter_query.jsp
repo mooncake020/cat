@@ -48,7 +48,7 @@
 		var domain=$("#domain").val();
 		var hostname=$("#hostname").val();
 		var count=$("#count").val();
-		window.location.href="?op=view&domain="+domain+"&startTime="+startTime+"&endTime="+endTime+"&hostname="+hostname+"&count="+count+getAltTypeStr();
+		window.location.href=encodeURI("?op=view&domain="+domain+"&startTime="+startTime+"&endTime="+endTime+"&hostname="+hostname+"&count="+count+getAltTypeStr());
 	}
 	$(document).ready(function(){
 		var types = '${payload.altType}';

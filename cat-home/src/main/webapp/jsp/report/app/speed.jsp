@@ -104,7 +104,7 @@
 						+ split + city2 + split + operator2;
 			}
 
-			window.location.href = "?op=speed&query1=" + query1 + "&query2=" + query2;
+			window.location.href=encodeURI( "?op=speed&query1=" + query1 + "&query2=" + query2)
 		}
 
 		$(document).ready(

@@ -193,7 +193,7 @@
 				var endTime=$("#endTime").val();
 				var domain=$("#domain").val();
 				var count=$("#count").val();
-				window.location.href="?op=view&domain="+domain+"&startTime="+startTime+"&endTime="+endTime+"&fullScreen=${payload.fullScreen}&alertType="+getType()+"&count="+count;
+				window.location.href=encodeURI("?op=view&domain="+domain+"&startTime="+startTime+"&endTime="+endTime+"&fullScreen=${payload.fullScreen}&alertType="+getType()+"&count="+count);
 			}
 		</script>
 </a:body>

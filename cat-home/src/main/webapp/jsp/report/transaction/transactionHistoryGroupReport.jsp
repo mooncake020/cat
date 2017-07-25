@@ -128,19 +128,19 @@
 							var reportType = '${payload.reportType}';
 							var type = '${payload.type}';
 							var queryname = $("#queryname").val();
-							window.location.href = "?op=historyGroupReport&domain="
-									+ domain
-									+ "&ip="
-									+ ip
-									+ "&date="
-									+ date
-									+ '&type='
-									+ type
-									+ '&reportType='
-									+ reportType
-									+ "&queryname="
-									+ queryname
-									+ customDate;
+							window.location.href = encodeURI("?op=historyGroupReport&domain="
+                                + domain
+                                + "&ip="
+                                + ip
+                                + "&date="
+                                + date
+                                + '&type='
+                                + type
+                                + '&reportType='
+                                + reportType
+                                + "&queryname="
+                                + queryname
+                                + customDate);
 						}
 					</script>
 			<tr>

@@ -61,7 +61,7 @@ function update() {
     var monitor = $("#monitor").val();
     var split = ";";
     var id = domain + split + type + split + name + split + monitor;
-    window.location.href = "?op=eventRuleSubmit&configs=" + configStr + "&ruleId=" + id;
+    window.location.href = encodeURI("?op=eventRuleSubmit&configs=" + configStr + "&ruleId=" + id);
 }
 
 	$(document).ready(function() {

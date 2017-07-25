@@ -135,7 +135,7 @@
 				var key = $('#ruleId').val();
 				var metrics = generateMetricsJsonString();
 				var configStr = generateConfigsJsonString();
-			    window.location.href = "?op=heartbeatRuleSubmit&configs=" + configStr + "&ruleId=" + key +"&metrics="+metrics;
+			    window.location.href=encodeURI( "?op=heartbeatRuleSubmit&configs=" + configStr + "&ruleId=" + key +"&metrics="+metrics)
 			});
 			
 			$("#add-metric-button").click(function(){

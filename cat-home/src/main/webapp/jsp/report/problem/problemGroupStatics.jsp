@@ -69,8 +69,8 @@
 				var longServiceTime=$("#p_longService").val();
 				var longCacheTime=$("#p_longCache").val();
 				var longCallTime=$("#p_longCall").val();
-				window.location.href="?op=groupReport&domain="+domain+"&ip="+ip+"&date="+date+"&urlThreshold="+longUrlTime+"&sqlThreshold="+longSqlTime+"&serviceThreshold="+longServiceTime
-						+"&cacheThreshold="+longCacheTime+"&callThreshold="+longCallTime+"&group=${payload.group}";
+				window.location.href=encodeURI("?op=groupReport&domain="+domain+"&ip="+ip+"&date="+date+"&urlThreshold="+longUrlTime+"&sqlThreshold="+longSqlTime+"&serviceThreshold="+longServiceTime
+                    +"&cacheThreshold="+longCacheTime+"&callThreshold="+longCallTime+"&group=${payload.group}");
 			}
 		</script>
 		</th>

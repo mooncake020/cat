@@ -43,7 +43,7 @@
 	      
 	      function queryNew(){
 	        var time=$("#time").val();
-	        window.location.href="?op=statistics&day="+time+"&domain=${model.domain}&type=${payload.type}";
+	        window.location.href=encodeURI("?op=statistics&day="+time+"&domain=${model.domain}&type=${payload.type}");
 	      }
 		</script>
 </a:body>

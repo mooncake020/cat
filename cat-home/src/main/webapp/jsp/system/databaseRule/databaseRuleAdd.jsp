@@ -151,7 +151,7 @@
 				var key = $('#ruleId').val();
 				var metrics = generateMetricsJsonString();
 				var configStr = generateConfigsJsonString();
-			    window.location.href = "?op=databaseRuleSubmit&configs=" + configStr + "&ruleId=" + key +"&metrics="+metrics;
+			    window.location.href=encodeURI( "?op=databaseRuleSubmit&configs=" + configStr + "&ruleId=" + key +"&metrics="+metrics)
 			});
 			
 			$("#add-metric-button").click(function(){

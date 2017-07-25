@@ -86,10 +86,10 @@
 					var customDate = '${model.customDate}';
 					var reportType = '${payload.reportType}';
 					var type = '${payload.type}';
-					window.location.href = "?op=history&domain=" + domain
-							+ "&reportType=" + reportType + "&type=" + type
-							+ "&date=" + date + "&queryname=" + queryname
-							+ "&ip=" + ip + customDate;
+					window.location.href = encodeURI("?op=history&domain=" + domain
+                        + "&reportType=" + reportType + "&type=" + type
+                        + "&date=" + date + "&queryname=" + queryname
+                        + "&ip=" + ip + customDate);
 				}
 			</script>
 			<tr>

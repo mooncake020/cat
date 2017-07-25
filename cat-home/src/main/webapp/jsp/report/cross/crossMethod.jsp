@@ -80,7 +80,7 @@
 				var callSort='${model.callSort}';
 				var remote='${payload.remoteIp}';
 				var project='${payload.projectName}';
-				window.location.href="?op=method&domain="+domain+"&ip="+ip+"&date="+date+"&queryName="+queryName+"&remote="+remote+"&project="+project+"&serviceSort="+serviceSort+"&callSort"+callSort;
+				window.location.href=encodeURI("?op=method&domain="+domain+"&ip="+ip+"&date="+date+"&queryName="+queryName+"&remote="+remote+"&project="+project+"&serviceSort="+serviceSort+"&callSort"+callSort);
 			}
 		</script>
 		<c:if test="${!empty model.methodInfo.callProjectsInfo}">

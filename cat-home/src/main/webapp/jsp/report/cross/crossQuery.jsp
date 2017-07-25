@@ -6,7 +6,7 @@
 		var date='${model.date}';
 		var method = $('#method').val();
 		
-		window.location.href="?op=query&domain="+domain+"&date="+date+"&reportType="+reportType+"&method="+method;
+		window.location.href=encodeURI("?op=query&domain="+domain+"&date="+date+"&reportType="+reportType+"&method="+method);
 	}
 </script>
 <table>

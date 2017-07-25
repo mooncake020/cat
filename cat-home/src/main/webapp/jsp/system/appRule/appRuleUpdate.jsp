@@ -112,7 +112,7 @@ function update() {
     var metric = $("#metric").val();
     var split = ";";
     var id = command + split + code + split + network + split + version + split + connectionType + split + platform + split + city + split + operator + ":" + metric + ":" + name;
-    window.location.href = "?op=appRuleSubmit&configs=" + configStr + "&ruleId=" + id;
+    window.location.href=encodeURI( "?op=appRuleSubmit&configs=" + configStr + "&ruleId=" + id)
 }
 
 	$(document).ready(function() {

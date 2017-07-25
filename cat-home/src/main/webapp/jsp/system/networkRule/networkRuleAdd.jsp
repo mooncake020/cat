@@ -153,7 +153,7 @@
 				var key = $('#ruleId').val();
 				var metrics = generateMetricsJsonString();
 				var configStr = generateConfigsJsonString();
-			    window.location.href = "?op=networkRuleSubmit&configs=" + configStr + "&ruleId=" + key +"&metrics="+metrics;
+			    window.location.href=encodeURI( "?op=networkRuleSubmit&configs=" + configStr + "&ruleId=" + key +"&metrics="+metrics)
 			});
 			
 			$("#add-metric-button").click(function(){
