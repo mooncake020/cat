@@ -5,7 +5,7 @@ import com.dianping.cat.message.spi.MessageManager;
 
 public class DefaultMetric extends AbstractMessage implements Metric {
 	private MessageManager m_manager;
-
+	public DefaultMetric(){}
 	public DefaultMetric(String type, String name) {
 		super(type, name);
 	}

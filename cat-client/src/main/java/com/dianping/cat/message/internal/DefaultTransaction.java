@@ -19,6 +19,9 @@ public class DefaultTransaction extends AbstractMessage implements Transaction {
 	private boolean m_standalone;
 
 	private long m_durationStart;
+	public DefaultTransaction(){
+
+	}
 
 	public DefaultTransaction(String type, String name, MessageManager manager) {
 		super(type, name);
@@ -27,6 +30,7 @@ public class DefaultTransaction extends AbstractMessage implements Transaction {
 		m_standalone = true;
 		m_durationStart = System.nanoTime();
 	}
+
 
 	@Override
 	public DefaultTransaction addChild(Message message) {

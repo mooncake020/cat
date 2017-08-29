@@ -1,19 +1,8 @@
 package com.dianping.cat.analysis;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
-import java.util.Properties;
 
-import com.alibaba.fastjson.JSON;
-import com.dianping.cat.message.spi.internal.DefaultMessageTree;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import io.searchbox.client.JestClient;
-import io.searchbox.client.JestClientFactory;
-import io.searchbox.client.config.HttpClientConfig;
-import io.searchbox.core.Index;
-import io.searchbox.indices.CreateIndex;
+import com.dianping.cat.message.storage.MessageBucket;
 import org.codehaus.plexus.logging.LogEnabled;
 import org.codehaus.plexus.logging.Logger;
 import org.codehaus.plexus.personality.plexus.lifecycle.phase.Initializable;
@@ -35,6 +24,8 @@ public class RealtimeConsumer extends ContainerHolder implements MessageConsumer
 
 	@Inject
 	private MessageAnalyzerManager m_analyzerManager;
+	@Inject
+	private MessageBucket localMessageBucket;
 
 	@Inject
 	private ServerStatisticManager m_serverStateManager;
@@ -62,7 +53,8 @@ public class RealtimeConsumer extends ContainerHolder implements MessageConsumer
 			Period period = m_periodManager.findPeriod(timestamp);
 
 			if (period != null) {
-				MessageTree messageTree =tree.copy();
+
+
 //				MessageTree messageTree = new DefaultMessageTree();
 //				messageTree.setDomain(tree.getDomain());
 //				messageTree.setHostName(tree.getHostName());
@@ -74,8 +66,12 @@ public class RealtimeConsumer extends ContainerHolder implements MessageConsumer
 //				messageTree.setSessionToken(tree.getSessionToken());
 //				messageTree.setThreadGroupName(tree.getThreadGroupName());
 //				messageTree.setThreadName(tree.getThreadName());
-				if (! "cat".equals(tree.getDomain()))
-				new ElasticSearchHelper().push2es(tree, messageTree);
+				if (!"cat".equals(tree.getDomain())) {
+
+
+					new ElasticSearchHelper().push2es(tree);
+
+				}
 				//System.err.println(tree.toString());
 
 				period.distribute(tree);
@@ -171,8 +167,26 @@ public class RealtimeConsumer extends ContainerHolder implements MessageConsumer
 }
 
 class DefaultMessageTreeVO{
+	private String timestamp;
 	private String detail;
 	private MessageTree messageTree;
+	private String rootMessageId;
+
+	public String getRootMessageId() {
+		return rootMessageId;
+	}
+
+	public void setRootMessageId(String rootMessageId) {
+		this.rootMessageId = rootMessageId;
+	}
+
+	public String getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
+	}
 
 	public String getDetail() {
 		return detail;

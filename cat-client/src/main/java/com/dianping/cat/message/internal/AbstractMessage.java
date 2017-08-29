@@ -26,6 +26,9 @@ public abstract class AbstractMessage implements Message {
 		m_name = String.valueOf(name);
 		m_timestampInMillis = MilliSecondTimer.currentTimeMillis();
 	}
+	public AbstractMessage(){
+
+	}
 
 	@Override
 	public void addData(String keyValuePairs) {

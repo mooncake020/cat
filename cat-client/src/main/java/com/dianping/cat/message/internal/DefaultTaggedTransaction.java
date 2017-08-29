@@ -11,7 +11,7 @@ public class DefaultTaggedTransaction extends DefaultTransaction implements Tagg
 	private String m_parentMessageId;
 
 	private String m_tag;
-
+	public DefaultTaggedTransaction(){}
 	public DefaultTaggedTransaction(String type, String name, String tag, MessageManager manager) {
 		super(type, name, manager);
 

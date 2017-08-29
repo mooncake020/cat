@@ -37,6 +37,9 @@ public class DefaultMessageTree implements MessageTree {
 
 	private boolean m_sample = true;
 
+	public DefaultMessageTree(){
+
+	}
 	@Override
 	public MessageTree copy() {
 		MessageTree tree = new DefaultMessageTree();

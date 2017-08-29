@@ -11,7 +11,9 @@ public class DefaultForkedTransaction extends DefaultTransaction implements Fork
 	private String m_parentMessageId;
 
 	private String m_forkedMessageId;
+	public DefaultForkedTransaction(){
 
+	}
 	public DefaultForkedTransaction(String type, String name, MessageManager manager) {
 		super(type, name, manager);
 

@@ -5,7 +5,9 @@ import com.dianping.cat.message.spi.MessageManager;
 
 public class DefaultEvent extends AbstractMessage implements Event {
 	private MessageManager m_manager;
+public DefaultEvent(){
 
+}
 	public DefaultEvent(String type, String name) {
 		super(type, name);
 	}

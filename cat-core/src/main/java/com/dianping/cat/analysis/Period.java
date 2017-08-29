@@ -73,6 +73,7 @@ public class Period {
 		String domain = tree.getDomain();
 
 		for (Entry<String, List<PeriodTask>> entry : m_tasks.entrySet()) {
+			//TODO FIXME 测试key是不是messageId
 			List<PeriodTask> tasks = entry.getValue();
 			int length = tasks.size();
 			int index = 0;

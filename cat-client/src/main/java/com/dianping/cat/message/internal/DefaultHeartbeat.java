@@ -5,7 +5,9 @@ import com.dianping.cat.message.spi.MessageManager;
 
 public class DefaultHeartbeat extends AbstractMessage implements Heartbeat {
 	private MessageManager m_manager;
+	public DefaultHeartbeat(){
 
+	}
 	public DefaultHeartbeat(String type, String name) {
 		super(type, name);
 	}

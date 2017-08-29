@@ -5,7 +5,9 @@ import com.dianping.cat.message.spi.MessageManager;
 
 public class DefaultTrace extends AbstractMessage implements Trace {
 	private MessageManager m_manager;
+	public DefaultTrace(){
 
+	}
 	public DefaultTrace(String type, String name) {
 		super(type, name);
 	}
