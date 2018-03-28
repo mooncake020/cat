@@ -1,5 +1,9 @@
 package com.dianping.cat.message;
 
+import com.dianping.cat.message.internal.*;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 /**
  * <p>
  * Message represents data collected during application runtime. It will be sent to back-end system asynchronous for
@@ -13,6 +17,16 @@ package com.dianping.cat.message;
  * @see Event, Heartbeat, Transaction
  * @author Frankie Wu
  */
+@JsonTypeInfo(use= JsonTypeInfo.Id.CLASS,include= JsonTypeInfo.As.PROPERTY,property="@class")
+@JsonSubTypes({
+		@JsonSubTypes.Type(value = DefaultEvent.class, name = "DefaultEvent"),
+		@JsonSubTypes.Type(value = DefaultForkedTransaction.class, name = "DefaultForkedTransaction"),
+		@JsonSubTypes.Type(value = DefaultHeartbeat.class, name = "DefaultHeartbeat"),
+		@JsonSubTypes.Type(value = DefaultMetric.class, name = "DefaultMetric"),
+		@JsonSubTypes.Type(value = DefaultTrace.class, name = "DefaultTrace"),
+		@JsonSubTypes.Type(value = DefaultTransaction.class, name = "DefaultTransaction"),
+		@JsonSubTypes.Type(value = DefaultTaggedTransaction.class, name = "DefaultTaggedTransaction")
+})
 public interface Message {
 	public static final String SUCCESS = "0";
 

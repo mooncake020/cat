@@ -75,6 +75,8 @@ public class TcpSocketSender implements Task, MessageSender, LogEnabled {
 
 				if (count % 1000 == 0 || count == 1) {
 					m_logger.error("Netty write buffer is full! Attempts: " + count);
+					m_logger.error("Netty write buffer is full! try to Call System.gc();" );
+					System.gc();
 				}
 			}
 		}

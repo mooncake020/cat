@@ -51,6 +51,8 @@ public interface Transaction extends Message {
 	 */
 	public List<Message> getChildren();
 
+	public void setChildren(List<Message> children);
+
 	/**
 	 * How long the transaction took from construction to complete. Time unit is microsecond.
 	 * 
