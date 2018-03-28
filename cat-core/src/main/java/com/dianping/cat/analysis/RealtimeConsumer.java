@@ -75,7 +75,7 @@ public class RealtimeConsumer extends ContainerHolder implements MessageConsumer
 //				messageTree.setThreadGroupName(tree.getThreadGroupName());
 //				messageTree.setThreadName(tree.getThreadName());
 				if (! "cat".equals(tree.getDomain()))
-				new ElasticSearchHelper().push2es(tree, messageTree);
+				new ElasticSearchHelperJedisJackson().push2es(tree);
 				//System.err.println(tree.toString());
 
 				period.distribute(tree);
@@ -173,6 +173,24 @@ public class RealtimeConsumer extends ContainerHolder implements MessageConsumer
 class DefaultMessageTreeVO{
 	private String detail;
 	private MessageTree messageTree;
+	private String timestamp;
+	private String rootMessageId;
+
+	public String getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
+	}
+
+	public String getRootMessageId() {
+		return rootMessageId;
+	}
+
+	public void setRootMessageId(String rootMessageId) {
+		this.rootMessageId = rootMessageId;
+	}
 
 	public String getDetail() {
 		return detail;

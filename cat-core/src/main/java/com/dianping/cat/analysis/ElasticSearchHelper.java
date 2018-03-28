@@ -3,6 +3,7 @@ package com.dianping.cat.analysis;
 import com.alibaba.fastjson.JSON;
 import com.dianping.cat.Cat;
 import com.dianping.cat.configuration.client.entity.ClientConfig;
+import com.dianping.cat.message.internal.MessageId;
 import com.dianping.cat.message.spi.MessageTree;
 import io.searchbox.client.JestClient;
 import io.searchbox.client.JestClientFactory;
@@ -40,10 +41,11 @@ public class ElasticSearchHelper implements LogEnabled {
         System.err.println(treeStr);
 				System.err.println(tree.getMessage());
 				System.err.println(tree.getRootMessageId());
+        //int index = MessageId.parse(messageId).getIndex();
         JestClient client = getJestClient();
         try {
             //client.execute(new CreateIndex.Builder("test_idx").build());
-            Index index = new Index.Builder(vo).index(tree.getDomain()).type("type_1").build();
+            Index index = new Index.Builder(vo).index(tree.getDomain()).type("type_1").id(tree.getMessageId()).build();
             client.execute(index);
         } catch (Exception e) {
             e.printStackTrace();
