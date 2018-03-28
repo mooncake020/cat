@@ -18,7 +18,6 @@ public DefaultEvent(){
 		m_manager = manager;
 	}
 
-	@Override
 	public void complete() {
 		setCompleted(true);
 

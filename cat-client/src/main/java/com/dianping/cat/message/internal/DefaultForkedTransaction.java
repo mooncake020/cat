@@ -31,7 +31,6 @@ public class DefaultForkedTransaction extends DefaultTransaction implements Fork
 		}
 	}
 
-	@Override
 	public void fork() {
 		MessageManager manager = getManager();
 
@@ -49,7 +48,6 @@ public class DefaultForkedTransaction extends DefaultTransaction implements Fork
 		}
 	}
 
-	@Override
 	public String getForkedMessageId() {
 		return m_forkedMessageId;
 	}

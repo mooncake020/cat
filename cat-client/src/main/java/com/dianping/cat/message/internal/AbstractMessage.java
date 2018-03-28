@@ -1,5 +1,9 @@
 package com.dianping.cat.message.internal;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
 
@@ -8,15 +12,20 @@ import java.nio.charset.Charset;
 import com.dianping.cat.message.Message;
 import com.dianping.cat.message.spi.codec.PlainTextMessageCodec;
 
+import static org.aspectj.lang.reflect.DeclareAnnotation.Kind.Type;
+
+
 public abstract class AbstractMessage implements Message {
+	@JsonProperty("m_type")
 	private String m_type;
-
+	@JsonProperty("m_name")
 	private String m_name;
-
+	@JsonProperty("m_status")
 	private String m_status = "unset";
 
+	@JsonProperty("m_timestampInMillis")
 	private long m_timestampInMillis;
-
+	@JsonProperty("data")
 	private CharSequence m_data;
 
 	private boolean m_completed;
@@ -30,7 +39,7 @@ public abstract class AbstractMessage implements Message {
 
 	}
 
-	@Override
+	
 	public void addData(String keyValuePairs) {
 		if (m_data == null) {
 			m_data = keyValuePairs;
@@ -45,7 +54,7 @@ public abstract class AbstractMessage implements Message {
 		}
 	}
 
-	@Override
+	
 	public void addData(String key, Object value) {
 		if (m_data instanceof StringBuilder) {
 			((StringBuilder) m_data).append('&').append(key).append('=').append(value);
@@ -63,7 +72,7 @@ public abstract class AbstractMessage implements Message {
 		}
 	}
 
-	@Override
+	
 	public CharSequence getData() {
 		if (m_data == null) {
 			return "";
@@ -72,35 +81,39 @@ public abstract class AbstractMessage implements Message {
 		}
 	}
 
-	@Override
+	
 	public String getName() {
 		return m_name;
 	}
 
-	@Override
+	
 	public String getStatus() {
 		return m_status;
 	}
 
-	@Override
+	
 	public long getTimestamp() {
 		return m_timestampInMillis;
 	}
 
-	@Override
+	
 	public String getType() {
 		return m_type;
 	}
 
-	@Override
+	
 	public boolean isCompleted() {
 		return m_completed;
 	}
 
-	@Override
+	
+
+	@JsonProperty("success")
+	@JsonIgnore
 	public boolean isSuccess() {
 		return Message.SUCCESS.equals(m_status);
 	}
+	public void setSuccess(boolean success){}
 
 	public void setCompleted(boolean completed) {
 		m_completed = completed;
@@ -110,12 +123,12 @@ public abstract class AbstractMessage implements Message {
 		m_name = name;
 	}
 
-	@Override
+	
 	public void setStatus(String status) {
 		m_status = status;
 	}
 
-	@Override
+	
 	public void setStatus(Throwable e) {
 		m_status = e.getClass().getName();
 	}
@@ -128,7 +141,7 @@ public abstract class AbstractMessage implements Message {
 		m_type = type;
 	}
 
-	@Override
+	
 	public String toString() {
 		PlainTextMessageCodec codec = new PlainTextMessageCodec();
 		ByteBuf buf = ByteBufAllocator.DEFAULT.buffer();

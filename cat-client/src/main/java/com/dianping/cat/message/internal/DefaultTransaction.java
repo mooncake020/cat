@@ -32,7 +32,6 @@ public class DefaultTransaction extends AbstractMessage implements Transaction {
 	}
 
 
-	@Override
 	public DefaultTransaction addChild(Message message) {
 		if (m_children == null) {
 			m_children = new ArrayList<Message>();
@@ -46,7 +45,15 @@ public class DefaultTransaction extends AbstractMessage implements Transaction {
 		return this;
 	}
 
-	@Override
+	public void setChildren(List<Message> children) {
+		if (m_children == null) {
+			m_children = new ArrayList<Message>();
+		}
+
+		if (children != null && children.size() > 0)
+			m_children.addAll(children);
+	}
+
 	public void complete() {
 		try {
 			if (isCompleted()) {
@@ -70,7 +77,6 @@ public class DefaultTransaction extends AbstractMessage implements Transaction {
 		}
 	}
 
-	@Override
 	public List<Message> getChildren() {
 		if (m_children == null) {
 			return Collections.emptyList();
@@ -79,7 +85,6 @@ public class DefaultTransaction extends AbstractMessage implements Transaction {
 		return m_children;
 	}
 
-	@Override
 	public long getDurationInMicros() {
 		if (m_durationInMicro >= 0) {
 			return m_durationInMicro;
@@ -103,7 +108,7 @@ public class DefaultTransaction extends AbstractMessage implements Transaction {
 		}
 	}
 
-	@Override
+
 	public long getDurationInMillis() {
 		return getDurationInMicros() / 1000L;
 	}
@@ -112,12 +117,12 @@ public class DefaultTransaction extends AbstractMessage implements Transaction {
 		return m_manager;
 	}
 
-	@Override
+
 	public boolean hasChildren() {
 		return m_children != null && m_children.size() > 0;
 	}
 
-	@Override
+
 	public boolean isStandalone() {
 		return m_standalone;
 	}
